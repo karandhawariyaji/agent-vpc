@@ -2,7 +2,7 @@ name: Run Terraform Code
 
 on:
   repository_dispatch:
-    types: [create_vpc]
+    types: [terraform_run]
 
 jobs:
   terraform:
