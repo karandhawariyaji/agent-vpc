@@ -28,10 +28,10 @@ jobs:
         run: terraform plan -var="project_id=${{ github.event.inputs.project_id }}"
 
       - name: Apply Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var="project_id=${{ github.event.inputs.project_id }}"
 
       - name: Apply Terraform Destroy
-        run: terraform destroy -auto-approve
+        run: terraform destroy -auto-approve -var="project_id=${{ github.event.inputs.project_id }}"
         # env:
         #   GOOGLE_CLOUD_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}  # Replace with your secret for GCP credentials
 
