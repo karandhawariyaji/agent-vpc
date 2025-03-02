@@ -6,6 +6,8 @@ on:
 jobs:
   vpc-creation:
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.SA_KEY }}
 
     steps:
       - name: Checkout repository
@@ -18,7 +20,13 @@ jobs:
         run: terraform init
 
       - name: Apply Terraform Plan
+        run: terraform plan 
+
+      - name: Apply Terraform Apply
         run: terraform apply -auto-approve
+
+      - name: Apply Terraform Destroy
+        run: terraform destroy -auto-approve
         # env:
         #   GOOGLE_CLOUD_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}  # Replace with your secret for GCP credentials
 
