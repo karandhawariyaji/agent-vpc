@@ -2,6 +2,11 @@ name: VPC Creation
 
 on:
   workflow_dispatch:  # This allows the workflow to be triggered via the API
+    inputs:
+      project_id:
+        description: 'The project ID'
+        required: true
+        type: string
 
 jobs:
   vpc-creation:
