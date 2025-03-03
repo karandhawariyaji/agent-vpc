@@ -27,8 +27,8 @@ jobs:
       - name: Apply Terraform Plan
         run: terraform plan -var="project_id=${{ github.event.inputs.project_id }}"
 
-      # - name: Apply Terraform Apply
-      #   run: terraform apply -auto-approve -var="project_id=${{ github.event.inputs.project_id }}"
+      - name: Apply Terraform Apply
+        run: terraform apply -auto-approve -var="project_id=${{ github.event.inputs.project_id }}"
 
       - name: Apply Terraform Destroy
         run: terraform destroy -auto-approve -var="project_id=${{ github.event.inputs.project_id }}"
