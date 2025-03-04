@@ -11,6 +11,14 @@ on:
         description: 'The user ID'
         required: true
         type: string
+      resource_type:
+        description: 'The Resource Type '
+        required: true
+        type: string
+      vpc_name:
+        description: 'The VPC Name'
+        required: true
+        type: string
 
 jobs:
   vpc-creation:
@@ -29,7 +37,7 @@ jobs:
         run: |
           cat <<EOF > backend-config.hcl
           bucket = "projectproject-443718"
-          prefix = "agentic/${{ github.event.inputs.user_id }}/${{ github.event.inputs.project_id }}"
+          prefix = "agentic/${{ github.event.inputs.user_id }}/${{ github.event.inputs.project_id }}/${{ github.event.inputs.resource_type }}/${{ github.event.inputs.vpc_name }}"
           EOF
 
       - name: Initialize Terraform with Backend Config
