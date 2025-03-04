@@ -5,6 +5,6 @@
 terraform {
     backend "gcs" {
      bucket  = "projectproject-443718"
-     prefix  = "Workloads/Data-foundation/consumer/qaw/prj-cus-qaw-dev-66576"
+     prefix  = "agentic/${var.user_id}/${var.project_id}"
   }
 }
