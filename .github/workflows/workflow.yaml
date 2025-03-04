@@ -44,10 +44,10 @@ jobs:
         run: terraform init -backend-config=backend-config.hcl
 
       - name: Terraform Plan
-        run: terraform plan -var="project_id=${{ github.event.inputs.project_id }}" -var="user_id=${{ github.event.inputs.user_id }}" -var="resource_type=${{ github.event.inputs.resource_type }}" -var="vpc_name=${{ github.event.inputs.vpc_name }}"
+        run: terraform plan -var="project_id=${{ github.event.inputs.project_id }}" -var="user_id=${{ github.event.inputs.user_id }}" -var="resource_type=${{ github.event.inputs.resource_type }}" -var="vpc_name=${{ github.event.inputs.vpc_name }}" --lock=false
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var="project_id=${{ github.event.inputs.project_id }}" -var="user_id=${{ github.event.inputs.user_id }}" -var="resource_type=${{ github.event.inputs.resource_type }}" -var="vpc_name=${{ github.event.inputs.vpc_name }}"
+        run: terraform apply -auto-approve -var="project_id=${{ github.event.inputs.project_id }}" -var="user_id=${{ github.event.inputs.user_id }}" -var="resource_type=${{ github.event.inputs.resource_type }}" -var="vpc_name=${{ github.event.inputs.vpc_name }}" --lock=false
 
       # - name: Terraform Destroy
       #   run: terraform destroy -auto-approve -var="project_id=${{ github.event.inputs.project_id }}" -var="user_id=${{ github.event.inputs.user_id }}"
