@@ -1,0 +1,45 @@
+name: VPC Creation
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: 'The project ID'
+        required: true
+        type: string
+      user_id:
+        description: 'The user ID'
+        required: true
+        type: string
+
+jobs:
+  vpc-creation:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.SA_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Create backend-config.hcl
+        run: |
+          cat <<EOF > backend-config.hcl
+          bucket = "projectproject-443718"
+          prefix = "agentic/${{ github.event.inputs.user_id }}/${{ github.event.inputs.project_id }}"
+          EOF
+
+      - name: Initialize Terraform with Backend Config
+        run: terraform init -backend-config=backend-config.hcl
+
+      - name: Terraform Plan
+        run: terraform plan -var="project_id=${{ github.event.inputs.project_id }}" -var="user_id=${{ github.event.inputs.user_id }}"
+
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve -var="project_id=${{ github.event.inputs.project_id }}" -var="user_id=${{ github.event.inputs.user_id }}"
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve -var="project_id=${{ github.event.inputs.project_id }}" -var="user_id=${{ github.event.inputs.user_id }}"
