@@ -7,6 +7,10 @@ on:
         description: 'The project ID'
         required: true
         type: string
+      user_id:
+        description: 'The user ID'
+        required: true
+        type: string
 
 jobs:
   vpc-creation:
@@ -22,7 +26,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Initialize Terraform
-        run: terraform init
+        run: terraform init -var="project_id=${{ github.event.inputs.project_id }}" -var="user_id=${{ github.event.inputs.user_id }}"
 
       - name: Apply Terraform Plan
         run: terraform plan -var="project_id=${{ github.event.inputs.project_id }}"
