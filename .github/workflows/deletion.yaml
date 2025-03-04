@@ -1,4 +1,4 @@
-name: VPC Creation
+name: VPC Deletion
 
 on:
   workflow_dispatch:
