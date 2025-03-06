@@ -36,7 +36,7 @@ jobs:
       - name: Create backend-config.hcl
         run: |
           cat <<EOF > backend-config.hcl
-          bucket = "projectproject-443718"
+          bucket = "agentic-452816"
           prefix = "agentic/${{ github.event.inputs.user_id }}/${{ github.event.inputs.project_id }}/${{ github.event.inputs.resource_type }}/${{ github.event.inputs.vpc_name }}"
           EOF
 
